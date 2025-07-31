@@ -317,7 +317,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function loadPdf(level) {
         // In a real app, this would load from /materials/${level}/book
         // For demo, we'll use a sample PDF URL
-        const url = 'https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/web/compressed.tracemonkey-pldi-09.pdf';
+        const url = 'https://github.com/adhammustafa505/gulfpublishing/blob/main/Document.pdf';
         
         pdfjsLib.getDocument(url).promise.then(function(pdf) {
             pdfDoc = pdf;
