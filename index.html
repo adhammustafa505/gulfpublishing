@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduPlatform - Modern Learning Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
+</head>
+<body>
+    <!-- Login Screen -->
+    <div id="login-screen" class="login-container">
+        <div class="login-card">
+            <div class="login-header">
+                <div class="logo">
+                    <div class="logo-icon">edu</div>
+                    <h1>EduPlatform</h1>
+                </div>
+                <p>Enter your password to access learning materials</p>
+            </div>
+            
+            <form id="login-form">
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Enter your password" required>
+                </div>
+                <button type="submit" class="btn-login">Login</button>
+            </form>
+            
+            <div class="login-footer">
+                <p>Admin password: <strong>1711</strong></p>
+                <p>Level 1 password: <strong>level1pass</strong></p>
+                <p>Level 2 password: <strong>level2pass</strong></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard -->
+    <div id="dashboard" class="dashboard-container">
+        <!-- Left Sidebar -->
+        <div class="sidebar">
+            <div class="logo">
+                <div class="logo-icon">edu</div>
+                <h1>EduPlatform</h1>
+            </div>
+            
+            <nav class="menu">
+                <ul>
+                    <li class="active"><a href="#"><i class="fas fa-home"></i> Dashboard</a></li>
+                    <li><a href="#"><i class="fas fa-calendar-alt"></i> Schedule</a></li>
+                    <li><a href="#"><i class="fas fa-chart-line"></i> Progress</a></li>
+                    <li id="admin-link" style="display: none;"><a href="#"><i class="fas fa-cog"></i> Admin Panel</a></li>
+                    <li><a href="#" id="logout"><i class="fas fa-sign-out-alt"></i> Log out</a></li>
+                </ul>
+            </nav>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Search Bar -->
+            <div class="search-bar">
+                <input type="text" placeholder="Search for lessons, materials...">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+            
+            <!-- Welcome Banner -->
+            <div class="welcome-banner">
+                <div class="banner-content">
+                    <h1>Effective Education!</h1>
+                    <p>Learning is easy and effective with our comprehensive resources</p>
+                </div>
+                <div class="banner-shapes">
+                    <div class="shape-ring"></div>
+                    <div class="shape-ring"></div>
+                    <div class="shape-ring"></div>
+                </div>
+            </div>
+            
+            <!-- Levels Grid -->
+            <div class="levels-container">
+                <h2>Educational Levels</h2>
+                <div class="levels-grid" id="levels-grid">
+                    <!-- Levels will be dynamically generated here -->
+                </div>
+            </div>
+            
+            <!-- Materials View -->
+            <div class="materials-container" id="materials-container" style="display: none;">
+                <div class="materials-header">
+                    <button class="btn-back" id="btn-back"><i class="fas fa-arrow-left"></i> Back to Levels</button>
+                    <h2 id="level-title">Level 1 Materials</h2>
+                </div>
+                
+                <div class="materials-grid" id="materials-grid">
+                    <!-- Materials will be dynamically generated here -->
+                </div>
+            </div>
+            
+            <!-- PDF Viewer -->
+            <div class="pdf-viewer-container" id="pdf-viewer-container" style="display: none;">
+                <div class="pdf-header">
+                    <button class="btn-back" id="btn-back-pdf"><i class="fas fa-arrow-left"></i> Back to Materials</button>
+                    <h2 id="pdf-title">Student Book - Level 1</h2>
+                </div>
+                <div class="pdf-controls">
+                    <button id="btn-prev"><i class="fas fa-chevron-left"></i></button>
+                    <span id="page-num">Page 1 of 10</span>
+                    <button id="btn-next"><i class="fas fa-chevron-right"></i></button>
+                </div>
+                <div class="flipbook" id="flipbook">
+                    <div class="page" id="page-1">
+                        <canvas id="pdf-canvas"></canvas>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Media Viewer -->
+            <div class="media-viewer-container" id="media-viewer-container" style="display: none;">
+                <div class="media-header">
+                    <button class="btn-back" id="btn-back-media"><i class="fas fa-arrow-left"></i> Back to Materials</button>
+                    <h2 id="media-title">Videos - Level 1</h2>
+                </div>
+                <div class="media-content" id="media-content">
+                    <!-- Media content will be loaded here -->
+                </div>
+            </div>
+            
+            <!-- Admin Panel -->
+            <div class="admin-panel" id="admin-panel" style="display: none;">
+                <div class="admin-header">
+                    <button class="btn-back" id="btn-back-admin"><i class="fas fa-arrow-left"></i> Back to Dashboard</button>
+                    <h2>Admin Panel</h2>
+                </div>
+                
+                <div class="admin-sections">
+                    <div class="admin-section">
+                        <h3>User Access Management</h3>
+                        <div class="user-access-form">
+                            <div class="input-group">
+                                <label for="password-input">Password</label>
+                                <input type="text" id="password-input" placeholder="Create new password">
+                            </div>
+                            <div class="input-group">
+                                <label for="access-level">Access Level</label>
+                                <select id="access-level">
+                                    <option value="1">Level 1</option>
+                                    <option value="2">Level 2</option>
+                                    <option value="3">Level 3</option>
+                                    <option value="4">Level 4</option>
+                                    <option value="5">Level 5</option>
+                                    <option value="6">Level 6</option>
+                                </select>
+                            </div>
+                            <button class="btn-admin" id="btn-add-access">Add Access</button>
+                        </div>
+                        
+                        <div class="access-list">
+                            <h4>Current Access Levels</h4>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Password</th>
+                                        <th>Access Level</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="access-table">
+                                    <!-- Access data will be populated here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <div class="admin-section">
+                        <h3>Content Management</h3>
+                        <div class="upload-form">
+                            <div class="input-group">
+                                <label for="upload-level">Level</label>
+                                <select id="upload-level">
+                                    <option value="1">Level 1</option>
+                                    <option value="2">Level 2</option>
+                                    <option value="3">Level 3</option>
+                                    <option value="4">Level 4</option>
+                                    <option value="5">Level 5</option>
+                                    <option value="6">Level 6</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <label for="content-type">Content Type</label>
+                                <select id="content-type">
+                                    <option value="book">Student Book (PDF)</option>
+                                    <option value="video">Video Lesson</option>
+                                    <option value="audio">Audio Lesson</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <label for="file-upload">Select File</label>
+                                <input type="file" id="file-upload">
+                            </div>
+                            <button class="btn-admin" id="btn-upload">Upload Content</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Right Sidebar -->
+        <div class="right-sidebar">
+            <div class="user-profile">
+                <div class="avatar">KG</div>
+                <div class="user-info">
+                    <span class="user-name">Kate G.</span>
+                    <span class="user-role">Student</span>
+                </div>
+            </div>
+            
+            <div class="course-progress">
+                <h3>Course Progress</h3>
+                <ul class="progress-list">
+                    <li>
+                        <span>Art</span>
+                        <span>35 hours</span>
+                    </li>
+                    <li>
+                        <span>Business</span>
+                        <span>40 hours</span>
+                    </li>
+                    <li>
+                        <span>Science</span>
+                        <span>25 hours</span>
+                    </li>
+                    <li>
+                        <span>Mathematics</span>
+                        <span>15 hours</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="premium-card">
+                <h3>Upgrade to Premium</h3>
+                <p>Access all features and unlimited resources</p>
+                <button>Upgrade Now</button>
+                <div class="premium-shapes">
+                    <div class="shape-ring"></div>
+                    <div class="shape-ring"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
